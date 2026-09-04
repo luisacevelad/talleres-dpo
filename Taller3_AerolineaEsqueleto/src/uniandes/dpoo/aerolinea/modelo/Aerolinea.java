@@ -163,7 +163,15 @@ public class Aerolinea
      */
     public Vuelo getVuelo( String codigoRuta, String fechaVuelo )
     {
-        // TODO implementar
+        for (Vuelo vueloActual : this.vuelos) {
+        	String fechaVueloActual = vueloActual.getFecha();
+        	String codigoRutaActual = vueloActual.getRuta().getCodigoRuta();
+        	
+        	if (fechaVueloActual.equals(fechaVuelo) && codigoRutaActual.equals(codigoRuta)) {
+        		return vueloActual;
+        	}
+        	
+        }
         return null;
     }
 
@@ -182,8 +190,13 @@ public class Aerolinea
      */
     public Collection<Tiquete> getTiquetes( )
     {
-        // TODO implementar
-        return null;
+    	ArrayList<Tiquete> todosTiquetes = new ArrayList<Tiquete>();
+    	
+    	for (Vuelo vueloActual : this.vuelos) {
+    		todosTiquetes.addAll( vueloActual.getTiquetes() );
+    	}
+    		
+        return todosTiquetes;
 
     }
 
